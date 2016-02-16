@@ -1,2 +1,31 @@
-<h1>Backend::FilmActorsController#index</h1>
-<p>Find me in app/views/backend/film_actors_controller/index.html.erb</p>
+<div class="main-content">
+
+<div class="btn-toolbar list-toolbar">
+    <a href="<%= new_backend_film_actor_path %>" class="btn btn-primary"><i class="fa fa-plus"></i> 新增</a>
+    <a href="#" class="btn btn-default">导入</a>
+    <a href="#" class="btn btn-default">导出</a>
+    <a href="#" class="btn btn-default">下载模板</a>
+  <div class="btn-group">
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>演员名称</th>
+      <th style="width: 3.5em;"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @film_actors.each do |actor| %>
+    <tr>
+      <td><%= actor.actor %></td>
+      <td>
+          <a href="<%= edit_backend_film_actor_path actor %>"><i class="fa fa-pencil"></i></a>
+          <a href="<%= backend_film_actor_path actor%>" data-confirm="确定删除吗?" data-method="delete" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
+      </td>
+    </tr>
+   <% end %>
+  </tbody>
+</table>
+<%= paginate @film_actors %>

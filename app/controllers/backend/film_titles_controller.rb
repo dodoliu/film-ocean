@@ -7,7 +7,7 @@ module Backend
 		end
 
 		def new
-			@film_title = FilmTitle.new
+			new_film_title
 		end
 
 		def create
@@ -15,7 +15,7 @@ module Backend
 			if @film_title.save
 				redirect_to backend_film_titles_path, notice: '新增成功!'
 			else
-				@film_title = FilmTitle.new
+				new_film_title
 				render action: :new
 			end
 		end
@@ -30,7 +30,7 @@ module Backend
 			if @film_title.update(film_title_params)
 				redirect_to backend_film_titles_path, notice: '修改成功!'
 			else
-				render edit_backend_film_titles_path(@film_title), notice: '修改失败!'
+				render edit_backend_film_title_path(@film_title), notice: '修改失败!'
 			end
 		end
 		def destroy
@@ -48,6 +48,10 @@ module Backend
 
 		def film_title_params
 			params.require(:film_title).permit(:chinese_name, :english_name, :id)
+		end
+
+		def new_film_title
+			@film_title = FilmTitle.new
 		end
 	end
 end
