@@ -4,8 +4,15 @@ Rails.application.routes.draw do
   namespace :backend do
     root 'admins#index'
 
+    resources :films
     resources :film_titles
     resources :film_actors
+    resources :film_areas
+    resources :film_downloads
+    resources :film_directors
+    resources :film_introductions
+    resources :film_logos
+    resources :film_categories
   end
 
 
