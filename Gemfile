@@ -25,6 +25,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+#分页
+gem 'kaminari'
+
+
+
 #gem 'bootstrap-sass', '~> 3.0', '>= 3.0.1.0'
 
 # Use ActiveModel has_secure_password
@@ -36,7 +41,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :product do
+group :production do
 	gem 'gp'
 	gem 'rails_12factor'
 end

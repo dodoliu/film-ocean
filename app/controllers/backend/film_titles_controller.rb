@@ -3,7 +3,7 @@ module Backend
 		before_action :find_film_title, only: [:edit, :update, :destroy]
 
 		def index
-			@film_titles = FilmTitle.all
+			@film_titles = FilmTitle.page(params[:page]).order('id desc')
 		end
 
 		def new
