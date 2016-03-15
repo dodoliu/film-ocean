@@ -3,7 +3,21 @@ module Backend
 		before_action :find_film_title, only: [:edit, :update, :destroy]
 
 		def index
-			@film_titles = FilmTitle.page(params[:page]).order('id desc')
+			#http://www.ibm.com/developerworks/cn/xml/x-introajaxrails/
+			p 1
+			p name = params[:name]
+			p params[:page]
+			if !name
+				@film_titles = FilmTitle.page(params[:page]).order('id desc')
+			else
+				@film_titles = FilmTitle.page(params[:page]).where(" chinese_name like '%#{name}%' or english_name like '%#{name}%' ").order('id desc')
+				render layuout: false
+			end
+
+			respond_to do |format|
+				format.html
+				format.js
+			end
 		end
 
 		def new
@@ -21,6 +35,7 @@ module Backend
 		end
 
 		def show
+			p 222
 		end
 
 		def edit
@@ -38,8 +53,28 @@ module Backend
 			if !@film_title.destroy
 				notice = '删除失败!'
 			end
-			redirect_to backend_film_titles_path, notice: notice
+			# redirect_to backend_film_titles_path, notice: notice
+
+			respond_to do |format|
+				format.json { render json: { IsSuccess: true } }
+				# format.js
+				# format.html { render 'aaaa'  }
+				# format.json { head :no_content }
+				# format.json { render JSON.parse('{ "abc" : 1}') }
+				# format.js {render :layout => false}
+				# format.js {render 'aaaa' }
+			end
+			# render JSON.parse('{ "abc" : 1}')
+
+			 #render json: @film_title
 		end
+
+		def abbbbb
+			respond_to do |format|
+				format.json { render JSON.parse('{ "abc" : 1 }') }
+			end
+		end
+
 
 		private
 		def find_film_title

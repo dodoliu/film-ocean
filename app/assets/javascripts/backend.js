@@ -3,3 +3,4 @@
 //= require turbolinks
 //= require jquery.knob
 //= require bootstrap.min
+//= require backend/film_titles

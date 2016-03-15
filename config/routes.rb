@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :film_introductions
     resources :film_logos
     resources :film_categories
+
+    post 'film_titles/abbbbb'
   end
 
 

@@ -5,6 +5,11 @@
     <a href="#" class="btn btn-default">导入</a>
     <a href="#" class="btn btn-default">导出</a>
     <a href="#" class="btn btn-default">下载模板</a>
+
+    <%= form_tag backend_film_titles_path,method: 'get', remote: true do %>
+    <%= text_field_tag :name %>
+    <%= submit_tag '查询' %>
+    <% end %>
   <div class="btn-group">
   </div>
 </div>
@@ -19,15 +24,48 @@
   </thead>
   <tbody>
   <% @film_titles.each do |title| %>
-    <tr>
+    <tr id="title_<%= title.id %>">
       <td><%= title.chinese_name %></td>
       <td><%= title.english_name%></td>
       <td>
+      <a data-toggle='modal' data-target='#modalConfirm' onclick="DeleteConfirm('<%= backend_film_title_path title%>','<%= title.id%>')">删除</a>
           <a href="<%= edit_backend_film_title_path title %>"><i class="fa fa-pencil"></i></a>
-          <a href="<%= backend_film_title_path title%>" data-confirm="确定删除吗?" data-method="delete" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
+          <a href="<%= backend_film_title_path title%>" data-confirm="确定删除吗?" data-method="delete" role="button" ><i class="fa fa-trash-o"></i></a>
+
+    <a   data-toggle='modal' data-target='#modalConfirm'  onclick="DeleteConfirm('<%= backend_film_title_path title%>')"><i class="fa fa-trash-o"></i></a>
       </td>
     </tr>
    <% end %>
   </tbody>
 </table>
 <%= paginate @film_titles %>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="modalContent" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               模态框（Modal）标题
+            </h4>
+         </div>
+         <div class="modal-body">
+            在这里添加一些文本
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+            <button type="button" class="btn btn-primary">
+               提交更改
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
