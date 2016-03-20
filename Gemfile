@@ -1,5 +1,5 @@
 if ENV['USE_OFFICIAL_GEM_SOURCE']
-	source 'https://ruby.taobao.org'
+	source 'https://gems.ruby-china.org'
 else
 	source 'https://rubygems.org'
 end
@@ -27,8 +27,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 #分页
 gem 'kaminari'
-
-
 
 #gem 'bootstrap-sass', '~> 3.0', '>= 3.0.1.0'
 

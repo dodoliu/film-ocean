@@ -6,7 +6,7 @@
     <a href="#" class="btn btn-default">导出</a>
     <a href="#" class="btn btn-default">下载模板</a>
 
-    <%= form_tag backend_film_titles_path,method: 'get', remote: true do %>
+    <%= form_tag 'film_titles/index/1',method: 'get', remote: true do %>
     <%= text_field_tag :name %>
     <%= submit_tag '查询' %>
     <% end %>
@@ -23,6 +23,11 @@
     </tr>
   </thead>
   <tbody>
+  1111
+  <%= render @film_titles %>
+  <hr/>
+
+
   <% @film_titles.each do |title| %>
     <tr id="title_<%= title.id %>">
       <td><%= title.chinese_name %></td>
